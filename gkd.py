@@ -17,7 +17,7 @@ warnings.filterwarnings('ignore') #ignore std warning，don't mind
 domain ='https://gkdworld.xyz/'
 signURL = os.environ["SIGNURL"].split(" ")
 myCookie= os.environ["COOKIE"].split(" ")
-SREVERCHAN= os.environ["SREVERCHAN"]
+SERVERCHAN= os.environ["SERVERCHAN"]
 HEADER = {
     "user-agent":
     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
@@ -74,19 +74,19 @@ def checkin(url, headers, form_data, retry, proxy=False):
     def success(url):
         logging.info("签到成功 URL: {}".format(extract_domain(url)))
         print("成功{}".format(extract_domain(url)))
-        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}{}".format("成功",extract_domain(url)))
+        requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}{}".format("成功",extract_domain(url)))
         return
     def cookie_err(url):
         logging.error("签到失败 URL: {}, cookies或formhash过期".format(extract_domain(url)))
         print("非法失败{}".format(extract_domain(url)))
         text = "{}, 签到出现非法失败, 手动更新cookies或formhash".format(extract_domain(url))
-        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}".format(text))
+        requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}".format(text))
         return
     def failed(url):
         logging.error("签到失败 URL: {}, 未知错误".format(extract_domain(url)))
         print("未知失败{}".format(extract_domain(url)))
         text = "{}, 签到出现未知失败".format(extract_domain(url))
-        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}".format(text))
+        requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}".format(text))
         print(text)
         return
     
