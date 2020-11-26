@@ -37,30 +37,12 @@ try:
 except ImportError as e:
     HEADER["accept-encoding"] = "gzip, deflate"
 
-PATH = os.path.abspath(os.path.dirname(__file__))
-
-log_file = os.path.join(PATH, 'checkin.log')
-fh = logging.FileHandler(encoding='utf-8', mode='a', filename=log_file)
-logging.basicConfig(
-    handlers=[fh],
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.INFO,
-    datefmt='%Y-%m-%d %H:%M:%S')
-
-if sys.version_info.major == 2:
-    logging.getLogger("requests").setLevel(logging.WARNING)
 # %%
 def get_randint(min_num, max_num):
     if min_num > max_num:
         raise ValueError("Illegal arguments...")
     return random.randint(min_num, max_num)
 
-def config_load(filename):
-    if not os.path.exists(filename) or os.path.isdir(filename):
-        return
-
-    config = open(filename, 'r').read()
-    return json.loads(config)
 
 def extract_domain(url):
     if not url:
@@ -92,18 +74,19 @@ def checkin(url, headers, form_data, retry, proxy=False):
     def success(url):
         logging.info("签到成功 URL: {}".format(extract_domain(url)))
         print("成功{}".format(extract_domain(url)))
+        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}{}".format("成功",extract_domain(url)))
         return
     def cookie_err(url):
         logging.error("签到失败 URL: {}, cookies或formhash过期".format(extract_domain(url)))
         print("非法失败{}".format(extract_domain(url)))
         text = "{}, 签到出现非法失败, 手动更新cookies或formhash".format(extract_domain(url))
-        requests.get("https://sc.ftqq.com/xxxx.send?text={}".format(text))
+        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}".format(text))
         return
     def failed(url):
         logging.error("签到失败 URL: {}, 未知错误".format(extract_domain(url)))
         print("未知失败{}".format(extract_domain(url)))
         text = "{}, 签到出现未知失败".format(extract_domain(url))
-        requests.get("https://sc.ftqq.com/xxxx.send?text={}".format(text))
+        requests.get("https://sc.ftqq.com/"+SREVERCHAN+".send?text={}".format(text))
         print(text)
         return
     
