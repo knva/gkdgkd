@@ -20,7 +20,7 @@ try:
     myCookie= os.environ["COOKIE"].split("&")
     SERVERCHAN= os.environ["SERVERCHAN"]
 except Exception as e:
-    return 0
+    raise
 
 HEADER = {
     "user-agent":
