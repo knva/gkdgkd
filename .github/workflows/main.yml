@@ -27,5 +27,6 @@ jobs:
             - name: "运行 签到"
               run: python3 gkd.py
               env:
-                  ACCOUNT: ${{ secrets.SIGNURL }}
+                  SIGNURL: ${{ secrets.SIGNURL }}
                   COOKIE: ${{ secrets.COOKIE }}
+                  SERVERCHAN: ${{ secrets.SERVERCHAN }} 
