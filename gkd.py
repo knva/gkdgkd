@@ -15,9 +15,13 @@ import json
 warnings.filterwarnings('ignore') #ignore std warning，don't mind
 
 domain ='https://gkdworld.xyz/'
-signURL = os.environ["SIGNURL"].split(" ")
-myCookie= os.environ["COOKIE"].split(" ")
-SERVERCHAN= os.environ["SERVERCHAN"]
+try:
+    signURL = os.environ["SIGNURL"].split(" ")
+    myCookie= os.environ["COOKIE"].split("&")
+    SERVERCHAN= os.environ["SERVERCHAN"]
+except Exception as e:
+    return 0
+
 HEADER = {
     "user-agent":
     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
@@ -146,6 +150,7 @@ def wrapper(args):
 if __name__ == '__main__':
     idx = 0
     for c in myCookie:
+        print (c,signURL[idx])
         signdata = {"domain":domain,"param":{"cookies":c},'checkin_url':signURL[idx],'proxy':False}
         wrapper(signdata)
         idx  = idx +1
