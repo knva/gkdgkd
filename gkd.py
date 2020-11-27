@@ -95,7 +95,7 @@ def checkin(url, headers, form_data, retry, proxy=False):
         return
     
     checkin_dict = {
-        "已签|已经签到|签过到": has_checked,
+        "已签|已经签到|签过到|<![CDATA[]]>": has_checked,
         "签到成功": success,
         "未定义|非法": cookie_err,
     }
@@ -150,7 +150,7 @@ def wrapper(args):
 if __name__ == '__main__':
     idx = 0
     for c in myCookie:
-        print (c,signURL[idx])
+        #print (c,signURL[idx])
         signdata = {"domain":domain,"param":{"cookies":c},'checkin_url':signURL[idx],'proxy':False}
         wrapper(signdata)
         idx  = idx +1
