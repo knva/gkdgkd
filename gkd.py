@@ -74,28 +74,28 @@ def checkin(url, headers, form_data, retry, proxy=False):
     def has_checked(url):
         logging.info("已经签到 URL: {}".format(extract_domain(url)))
         print("已签{}".format(extract_domain(url)))
-        return 
+        #return 
     def success(url):
         logging.info("签到成功 URL: {}".format(extract_domain(url)))
         print("成功{}".format(extract_domain(url)))
         requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}{}".format("成功",extract_domain(url)))
-        return
+        #return
     def cookie_err(url):
         logging.error("签到失败 URL: {}, cookies或formhash过期".format(extract_domain(url)))
         print("非法失败{}".format(extract_domain(url)))
         text = "{}, 签到出现非法失败, 手动更新cookies或formhash".format(extract_domain(url))
         requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}".format(text))
-        return
+        #return
     def failed(url):
         logging.error("签到失败 URL: {}, 未知错误".format(extract_domain(url)))
         print("未知失败{}".format(extract_domain(url)))
         text = "{}, 签到出现未知失败".format(extract_domain(url))
         requests.get("https://sc.ftqq.com/"+SERVERCHAN+".send?text={}".format(text))
         print(text)
-        return
+        #return
     
     checkin_dict = {
-        "已签|已经签到|签过到|<![CDATA[]]>": has_checked,
+        "已签|已经签到|签过到|": has_checked,
         "签到成功": success,
         "未定义|非法": cookie_err,
     }
