@@ -9,7 +9,10 @@ urlist = ["http://api.turinglabs.net/api/v1/jd/ddfactory/create/P04z54XCjVWnYaS5
 "http://api.turinglabs.net/api/v1/jd/farm/create/6c892c16c708490a8194ac685c54a7e2/",
 "http://api.turinglabs.net/api/v1/jd/farm/create/0cda90d46c1f4219b677a583ea317e9e/",
 "http://api.turinglabs.net/api/v1/jd/pet/create/MTE1NDAxNzgwMDAwMDAwMzYyNjQxMjM=/",
-"http://api.turinglabs.net/api/v1/jd/pet/create/MTAxODEyMjkxMDAwMDAwMDQwMTMwNjQ5/"]
+"http://api.turinglabs.net/api/v1/jd/pet/create/MTAxODEyMjkxMDAwMDAwMDQwMTMwNjQ5/",
+"https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/WiunMpVWHqc=/",
+"https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/nlQkm0kjvo-Y4TqUab9SBqt9zd5YaBeE/",
+"https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/wCEG_qbvMc1hbpb5Wgi36qt9zd5YaBeE/"]
 
 
 for i in urlist:
